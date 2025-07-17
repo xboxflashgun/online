@@ -229,13 +229,29 @@ function gethourly()	{
 		$where .= "and langid=$langid\n";
 
 	$rows = pg_copy_to($db, "(
-
-		select 
-			utime,sum(gamers) 
-		from aggs.hourly_histo
-		$joing
-		where
-			$where
+	
+		with tab as (
+			select 
+				utime,
+				sum(gamers) as gamers
+			from aggs.hourly_histo
+			$joing
+			where
+				$where
+			group by 1
+		union
+			select
+	 			u as utime,
+	 			0 as gamers
+	 		from
+	 			generate_series(
+	 				(select min(utime) from aggs.hourly_histo),
+	 				(select max(utime) from aggs.hourly_histo),
+	 				3600) u
+		) select
+			utime,
+			max(gamers) as gamers
+		from tab
 		group by 1
 		order by 1
 
