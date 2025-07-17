@@ -1,0 +1,93 @@
+body {
+    font-family: Roboto,Helvetica Neue,Arial,sans-serif;
+    font-size: 14px;
+    width: 960px;
+    margin: auto;
+    color: #000;
+    background-color: #ccc;
+}
+
+.numbers {
+	font-weight: bold;
+}
+
+.scrollable {
+	overflow: auto;
+	max-height: 200px;
+	display: block;
+	width: 100%;
+	margin-right: auto;
+	background-color: #dddddd;
+	margin: 0px;
+	padding: 0px;
+}
+
+#hourly {
+	background-color: #dddddd;
+}
+
+.popup {
+	position: absolute;
+	background-color: rgba(64, 32, 64, 0.8);
+	color: #eee;
+	padding: 10px;
+	border: 1px solid #999;
+	border-radius: 5px;
+}
+
+.stdtab {
+	width: 100%;
+}
+
+.stdtab td {
+	text-align: right;
+	padding: 0px 6px;
+}
+
+.stdtab td:nth-child(1) {
+	width: 370px;
+}
+
+.stdtab td:nth-child(2) {
+	width: 70px;
+}
+
+.stdtab td:nth-child(3) {
+	width: 450px;
+}
+
+.stdtab td:nth-child(4) {
+	width: 70px;
+}
+
+.rect {
+	height: 10px;
+}
+
+#gamers {
+	display: table;
+	width: 100%;
+	font-size: 90%;
+}
+
+#gamers td {
+	padding: 0px 2px;
+}
+
+#gamers td:nth-child(6)	{
+	width: 40px;
+	text-align: right;
+}
+
+input[type="button"] {
+	float: right;
+	margin: 5px;
+}
+
+footer  {
+    padding-top: 40px;
+	padding-bottom: 5px;
+	text-align: end;
+	font-size: 90%;
+}
+

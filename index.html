@@ -1,0 +1,207 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="ru">
+<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>XboxStat.com - Online</title>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
+<meta name="robots" content="noindex,nofollow">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
+<link rel="stylesheet" type="text/css" href="main.css">
+<script src="/d3.v7.min.js"></script>
+<script src="scripts.js"></script>
+<script src="drawtab.js"></script>
+<script src="xuids.js"></script>
+<script src="numbers.js"></script>
+<script src="hourly.js"></script>
+</head>
+<body onload="main()">
+
+	<h2>Gamers online as of <span class="numbers" id="asof"></span></h2>
+
+	<p>Looking for information on games in the Xbox Live ecosystem?
+You've come to the right place.
+My pet project is 10 years old and is an unofficial source of information regarding Xbox Live games on various devices.
+This page shows what games players are playing right now.
+You can (and should) filter the parameters you're interested in.<p>
+
+	<p>Below is the graph of the activity for the last 24 hours. 
+	You can select country in the corresponding table 
+	and see when there is a peak amount of gamers in that particular country.</p>
+
+	<p>All other tables show players as of "right now", 
+	only those who have launched the game in the last 24 hours 
+	and are still playing.</p>
+
+
+	<div id="hourly"></div>
+
+	<h3>Devices</h3>
+
+	<p>The Xbox ecosystem allows you to play on a variety of devices.
+	So, you can play Minecraft on almost anything.
+	And if you are signed into your Xbox live account in the game, you will appear in this table.</p>
+
+	<p>If you play an Xbox One game on an Xbox Series, it will be counted as an Xbox Series.
+	If you play an Xbox 360 game on an Xbox One or Xbox Series, 
+	the tables will list the game twice with the same name, 
+	one of which will correspond to the game id on the Xbox 360 platform, 
+	the second will refer to the backward compatibility environment. 
+	The environment will indicate the appropriate device -- One or Series.</p>
+
+	<input type="button" value="Reset filters" />
+	
+	<table class="scrollable"><tbody id="devices" class="stdtab">
+			<tr class="placeholder"><td>Loading...</td></tr>
+	</tbody></table>
+
+	<h3>Genres</h3>
+	<p>Genre in the Xbox Live ecosystem is a controversial parameter. 
+	It is a mystery to me how exactly the genre is assigned, I did not find any documents, 
+	although it is impossible that MS did not describe the requirements for this field. 
+	The fact is that some games do not specify it at all or specify the most suitable one, 
+	but some incomprehensible 
+	<a href="https://www.xbox.com/en-US/games/store/rec-room/9PGPQK0XTHRZ" target="_blank">Rec Room</a> 
+	included almost all genres, and it gets away with it.</p>
+
+	<p>The number of players in the table is the number of unique gamertags that played this genre. 
+	If a game has many genres, each of them will receive +1 from each player. 
+	This is why the "All" line in the Genres table has a number of players 
+	that significantly exceeds the total number of players.</p>
+
+	<table class="scrollable"><tbody id="genres" class="stdtab">
+			<tr class="placeholder"><td>Loading...</td></tr>
+	</tbody></table>
+
+	<h3>Countries</h3>
+	<p>Every time a player takes a screenshot or records a clip in the game, 
+	in addition to the date/time, game title, platform, and player name, 
+	the locale settings are also recorded in their feed. 
+	Some games can record a clip themselves, like Forza Horizon 2 
+	does in some key plot moments. 
+	If you haven't made a single clip or screenshot in 10 years of gaming, 
+	then I have no way to know your locale, 
+	and I won't scan your account. 
+	Or if you take screenshots and clips, 
+	but your security settings prohibit everyone 
+	except your friends from viewing them, for example. 
+	Or if your account is a child account, there are some really severe restrictions.</p>
+
+	<p>An important note regarding the "GB" country: 
+	I had to add "+ Others" because I have no other explanation for the number of players, 
+	other than the hypothesis that for all countries that are not on the official Xbox supported list, 
+	players specify this locale (GB-EN).</p>
+
+	<input type="text" size="40" placeholder="Filter country names..." id="filter-countries" />
+	<table class="scrollable"><tbody id="countries" class="stdtab">
+			<tr class="placeholder"><td>Loading...</td></tr>
+	</tbody></table>
+
+	<h3>Languages</h3>
+
+	<p>You might be wondering how it happened that the table of countries and languages 
+	includes many unsupported languages on Xbox?
+	I suppose that a player could have once played under their Live account on PC, 
+	where the choice of locales is much larger, 
+	and filmed a game clip or took a screenshot there.</p>
+
+	<p>In any case, you have the opportunity to find a companion from your country 
+	or who speaks your language.</p>
+
+	<p>Some countries have two official languages, for example, Canada or Switzerland. 
+	You can see which language is more common by selecting a country and comparing 
+	the number of players who indicated one or another language.</p>
+
+	<input type="text" size="40" placeholder="Filter language names..." id="filter-langs" />
+	<table class="scrollable"><tbody id="langs" class="stdtab">
+			<tr class="placeholder"><td>Loading...</td></tr>
+	</tbody></table>
+
+	<h3>Games</h3>
+	<p>The game name is generally a rather unreliable parameter. 
+	For example, Forza Horizon 2 on Xbox 360 and on Xbox One 
+	are two completely different games. 
+	And the table will have two identical lines. 
+	How to distinguish them? 
+	Select one of them and look at the list of platforms.</p>
+
+	<p>It also happens the other way around, 
+	when one game has many names, like Minecraft. 
+	It has a different id on different platforms.</p>
+
+	<p>It also happens that the GOTY Edition has a different id 
+	from the main game.</p>
+
+	<p>The table shows the first 150 games, 
+	and if you are interested in a game not in the first hundred, 
+	then just type part of the name in the filter field. 
+	If nothing is found, 
+	then no one is playing this game at the moment.</p>
+	
+	<input type="text" size="40" placeholder="Filter title names..." id="filter" />
+	<table class="scrollable"><tbody id="titles" class="stdtab">
+			<tr class="placeholder"><td>Loading...</td></tr>
+	</tbody></table>
+
+	<h3>Players</h3>
+
+	<p>Finally, if you've set the right filters in the tables above, 
+	here you'll see a list of players in the order of "whoever started the game later 
+	is higher in the list". First 150 gamers are shown.
+	A great way to find a companion from your country or in a long-forgotten game.</p>
+
+	<p>Right now <span class="numbers" id="gtready"></span> gamertag names are got.
+	</p>
+
+	<table class="scrollable"><tbody id="gamers">
+			<tr class="placeholder"><td>Loading...</td></tr>
+	</tbody></table>
+
+	<input type="button" value="Reset filters" />
+
+	<h3>How it works</h3>
+
+	<p>Every <span class="numbers" id="avgtime"></span> minutes my scripts scan the state (
+	<a href="https://learn.microsoft.com/en-us/gaming/gdk/docs/reference/live/rest/uri/presence/atoc-reference-presence" target="_blank">Presence</a>
+	) of <span class="numbers" id="xuids"></span> players.
+	Presence shows which game is currently running and on which device. 
+	I store this information in the 
+	<a href="https://postgrespro.com/products/postgrespro/enterprise" target="_blank">Postgres Pro Enterprise</a> DBMS. </p>
+	
+	<p>A separate pool of scripts attempts to get a list of clips and screenshots, 
+	from which I determine the country and language. 
+	Another scripts are determining the Gamertag. 
+	And another set of scripts continuously expands the list of gamers
+	by brute-forcing the id.</p>
+
+	<p>I do not scan players for whom it was not possible to determine the language/country.</p>
+
+	<p>The entire complex consists of three dedicated servers 
+	that receive the necessary information from 50+ artificial accounts. 
+	The main problem is not to cause problems for the Xbox Live servers, 
+	for which I observe 
+	<a href="https://learn.microsoft.com/en-us/gaming/gdk/docs/services/develop/best-practices/live-fine-grained-rate-limiting" target="_blank">Fine-Grained Rate Limiting</a>.</p>
+
+	<p>Let me summarize a bit</p>
+
+	<ul>My sample does NOT include
+		<li>players who set the "invisible" ("offline") status
+		<li>players who did not take a single screenshot or record a single video
+		<li>offline players who disconnects from the Internet
+		<li>players who have a "child account" profile (under 18 years old), 
+			for them there are some kind of cruel restrictions on requesting information
+		<li>who have not yet reached the turn of my brute-forcer
+	</ul>
+
+	<p>It would seem that my sample is crap. 
+	But - tens of millions of players who passed through all these filters do not allow me to say that, 
+	and give a very truthful picture of what is happening on game stage.</p>
+
+
+	<h3>Custom reporting</h3>
+	<p>Yes, I keep all the information avbove since Febriary 2024. 
+	For example, <span class="numbers" id="active"></span> gamers were active last week.
+	In case you are interested, contact me.</p>
+	<footer>Contact: <a href="mailto:flashgun@xboxstat.com?subject=xboxstat.com">flashgun@xboxstat.com</a></footer>
+	<div class="popup" id="popup">?</div>
+</body>
+</html>
+
