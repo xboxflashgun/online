@@ -80,6 +80,17 @@ function main() {
 
 	});
 
+	function checkcompact() {
+
+		var compact = d3.select("#compact").property('checked');
+		d3.selectAll("p").style("display", compact ? "none" : null);
+		d3.selectAll("ul").style("display", compact ? "none" : null);
+
+	}
+
+	d3.select("#compact").on('click', e => checkcompact() );
+	checkcompact();
+
 }
 
 function filter()	{

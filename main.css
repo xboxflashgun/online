@@ -7,6 +7,18 @@ body {
     background-color: #ccc;
 }
 
+h3 {
+}
+
+p {
+	line-height: 1.5;
+}
+
+ul {
+	padding-left: 150px;
+	line-height: 1.5;
+}
+
 .numbers {
 	font-weight: bold;
 }
@@ -37,6 +49,10 @@ body {
 
 .stdtab {
 	width: 100%;
+}
+
+tr.placeholder {
+	height: 200px;
 }
 
 .stdtab td {
@@ -81,7 +97,7 @@ body {
 
 input[type="button"] {
 	float: right;
-	margin: 5px;
+	margin-top: -40px;
 }
 
 footer  {

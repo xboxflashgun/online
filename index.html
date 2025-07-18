@@ -36,6 +36,8 @@ You can (and should) filter the parameters you're interested in.<p>
 
 	<h3>Devices</h3>
 
+	<input type="button" value="Reset filters" />
+
 	<p>The Xbox ecosystem allows you to play on a variety of devices.
 	So, you can play Minecraft on almost anything.
 	And if you are signed into your Xbox live account in the game, you will appear in this table.</p>
@@ -46,8 +48,6 @@ You can (and should) filter the parameters you're interested in.<p>
 	one of which will correspond to the game id on the Xbox 360 platform, 
 	the second will refer to the backward compatibility environment. 
 	The environment will indicate the appropriate device -- One or Series.</p>
-
-	<input type="button" value="Reset filters" />
 	
 	<table class="scrollable"><tbody id="devices" class="stdtab">
 			<tr class="placeholder"><td>Loading...</td></tr>
@@ -182,14 +182,16 @@ You can (and should) filter the parameters you're interested in.<p>
 
 	<p>Let me summarize a bit</p>
 
+	<p>
 	<ul>My sample does NOT include
-		<li>players who set the "invisible" ("offline") status
-		<li>players who did not take a single screenshot or record a single video
-		<li>offline players who disconnects from the Internet
-		<li>players who have a "child account" profile (under 18 years old), 
+		<li />players who set the "invisible" ("offline") status
+		<li />players who did not take a single screenshot or record a single video
+		<li />offline players who disconnects from the Internet
+		<li />players who have a "child account" profile (under 18 years old), 
 			for them there are some kind of cruel restrictions on requesting information
-		<li>who have not yet reached the turn of my brute-forcer
+		<li />who have not yet reached the turn of my brute-forcer
 	</ul>
+	</p>
 
 	<p>It would seem that my sample is crap. 
 	But - tens of millions of players who passed through all these filters do not allow me to say that, 
@@ -200,8 +202,14 @@ You can (and should) filter the parameters you're interested in.<p>
 	<p>Yes, I keep all the information avbove since Febriary 2024. 
 	For example, <span class="numbers" id="active"></span> gamers were active last week.
 	In case you are interested, contact me.</p>
+	<div>
+		<label><input type="checkbox" id="compact">Compact page (hide text)</label>
+	</div>
+
 	<footer>Contact: <a href="mailto:flashgun@xboxstat.com?subject=xboxstat.com">flashgun@xboxstat.com</a></footer>
+	
 	<div class="popup" id="popup">?</div>
+
 </body>
 </html>
 
