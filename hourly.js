@@ -43,6 +43,7 @@ function hourly() {
 			.duration(700)
 			.call(d3.axisLeft(y));
 
+		// shiny small triangles
 		function tweenfunc(d)	{
 
 			var oldy = +d3.select(this).attr("y");
@@ -62,8 +63,9 @@ function hourly() {
 
 				if(tri)
 					tri.attr("transform", `translate(${barx + 19.4 - 10.78/2}, ${oldy + (newy - oldy) * t - 6})` + ((oldy > newy) ? "" : " rotate(180)") );
-			if(tri && t === 1)
-				tri.remove();
+		
+				if(tri && t === 1)
+					tri.remove();
 
 			}
 
