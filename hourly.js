@@ -43,6 +43,32 @@ function hourly() {
 			.duration(700)
 			.call(d3.axisLeft(y));
 
+		function tweenfunc(d)	{
+
+			var oldy = +d3.select(this).attr("y");
+			var barx = +d3.select(this).attr("x");
+			var newy = y(d[1]);
+
+			var tri;
+			if(oldy !== newy)
+				tri = d3.select(this.parentNode)
+					.append("path")
+					.attr("d", d3.symbol().type(d3.symbolTriangle)
+						.size(30))
+					.attr("fill", "red")
+					.attr("transform", `translate(${barx + 19.4 - 10.78/2}, ${oldy - 6})` + ((oldy > newy) ? "" : " rotate(180)") );
+
+			return function(t)	{
+
+				if(tri)
+					tri.attr("transform", `translate(${barx + 19.4 - 10.78/2}, ${oldy + (newy - oldy) * t - 6})` + ((oldy > newy) ? "" : " rotate(180)") );
+			if(tri && t === 1)
+				tri.remove();
+
+			}
+
+		}
+
 		svg.selectAll("rect")
 			.data(tab)
 			.join( enter => {
@@ -59,6 +85,7 @@ function hourly() {
 
 				update
 					.transition()
+					.tween('lil-arrows', tweenfunc)
 					.duration(700)
 					.attr("x", d => x(d[0]))
 					.attr("y", d => y(d[1]))
