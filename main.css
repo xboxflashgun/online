@@ -125,6 +125,17 @@ input[type="button"] {
 	padding-left: 10px;
 }
 
+#person {
+	padding-left: 40px;
+}
+
+#profile h2 .xbox {
+	display: inline-block;
+	position: relative;
+	bottom: -3px;
+	padding-left: 20px;
+}
+
 #gt {
 	padding-left: 10px;
 }
@@ -134,10 +145,11 @@ input[type="button"] {
 }
 
 #gamerscore {
-	padding-left: 20px;
+	padding-left: 8px;
 }
 
 #realname {
+	padding-right: 20px;
 	padding-left: 20px;
 }
 
