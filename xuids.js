@@ -66,7 +66,9 @@ function drawxuids()	{
 		});
 
 		d3.select('#gamers').style('opacity', null);
-		d3.selectAll('#gamers span.xbox').on('click', e => profile(e, tab[e.target.dataset.id][6], tab[8]) );		// send event, profile & prof. age
+		d3.selectAll('#gamers span.xbox').on('click', e => profile(e, 
+			tab[e.target.dataset.id][6], 
+			tab[e.target.dataset.id][7]) );		// send event, profile & prof. age
 
 	});
 

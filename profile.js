@@ -19,7 +19,18 @@ function profile(e, p, age)	{
 	var pic = (prof.gamedisplaypicraw) ? prof.gamedisplaypicraw : prof.displaypicraw;
 
 	d3.select("#pic").attr("src", pic + "&w=200&h=200");
+	d3.select("#updated").text(age);
+	d3.select("#day-days").text( (age === 1) ? "" : "s" );
 
+	var bio = prof.bio;
+	bio ??= prof.detail.bio;
+	d3.select("#bio").style("display", bio ? null : "none");
+	d3.select("#bioph").text(bio);
 
+	var loc = prof.location;
+	loc ??= prof.detail.location;
+	d3.select("#location").style("display", loc ? null : "none");
+	d3.select("#locph").text(loc);
+	
 
 }
