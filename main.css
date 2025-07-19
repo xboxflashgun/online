@@ -110,6 +110,50 @@ input[type="button"] {
 	margin-top: -40px;
 }
 
+#gamers .xbox {
+	cursor: pointer;
+}
+
+#profile {
+	color: #fff;
+	padding: 60px;
+	border: 1px solid #fff;
+	border-radius: 5px;
+}
+
+#profile h1 {
+	padding-left: 10px;
+}
+
+#gt {
+	padding-left: 10px;
+}
+
+#suffix	{
+	color: #eee;
+}
+
+#gamerscore {
+	padding-left: 20px;
+}
+
+#realname {
+	padding-left: 20px;
+}
+
+#person {
+	font-size: 110px;
+	color: #fff;
+	padding: 40px;
+	border: 4px solid #fff;
+	border-radius: 50%;
+	margin: 1px;
+}
+
+#pic {
+	border-radius: 50%;
+}
+
 footer  {
     padding-top: 40px;
 	padding-bottom: 5px;

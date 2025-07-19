@@ -1,17 +1,18 @@
 <!doctype html>
 <html itemscope="" itemtype="http://schema.org/WebPage" lang="ru">
-<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>XboxStat.com - Online</title>
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
-<meta name="robots" content="noindex,nofollow">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
-<link rel="stylesheet" type="text/css" href="main.css">
-<script src="/d3.v7.min.js"></script>
-<script src="scripts.js"></script>
-<script src="drawtab.js"></script>
-<script src="xuids.js"></script>
-<script src="numbers.js"></script>
-<script src="hourly.js"></script>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>XboxStat.com - Online</title>
+	<meta name="robots" content="noindex,nofollow">
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script src="/d3.v7.min.js"></script>
+	<script src="scripts.js"></script>
+	<script src="drawtab.js"></script>
+	<script src="xuids.js"></script>
+	<script src="numbers.js"></script>
+	<script src="hourly.js"></script>
+	<script src="profile.js"></script>
 </head>
 <body onload="main()">
 
@@ -182,16 +183,14 @@ You can (and should) filter the parameters you're interested in.<p>
 
 	<p>Let me summarize a bit</p>
 
-	<p>
 	<ul>My sample does NOT include
-		<li />players who set the "invisible" ("offline") status
-		<li />players who did not take a single screenshot or record a single video
-		<li />offline players who disconnects from the Internet
-		<li />players who have a "child account" profile (under 18 years old), 
-			for them there are some kind of cruel restrictions on requesting information
-		<li />who have not yet reached the turn of my brute-forcer
+		<li>players who set the "invisible" ("offline") status</li>
+		<li>players who did not take a single screenshot or record a single video</li>
+		<li>offline players who disconnects from the Internet</li>
+		<li>players who have a "child account" profile (under 18 years old), 
+			for them there are some kind of cruel restrictions on requesting information</li>
+		<li>who have not yet reached the turn of my brute-forcer</li>
 	</ul>
-	</p>
 
 	<p>It would seem that my sample is crap. 
 	But - tens of millions of players who passed through all these filters do not allow me to say that, 
@@ -209,6 +208,20 @@ You can (and should) filter the parameters you're interested in.<p>
 	<footer>Contact: <a href="mailto:flashgun@xboxstat.com?subject=xboxstat.com">flashgun@xboxstat.com</a></footer>
 	
 	<div class="popup" id="popup">?</div>
+
+	<div id="profile">
+		<table>
+			<tr><td rowspan="2">
+					<img src="/1x1.png" id="pic"/>
+					<span id="person" class="xbox">&#xE301;</span>
+				</td><td><h1><span id="gt"></span><span id="suffix"></span></h1></td></tr>
+				<tr><td><h2><span id="realname"></span><span class="xbox">&#xE483;</span><span id="gamerscore"></span></h2></td></tr>
+			<tr><th>Bio:</th><td>...</td></tr>
+			<tr><th>Location:</th><td>...</td></tr>
+			<tr><th>Accounts:</th><td>...</td></tr>
+			<tr><td colspan="2">*updated <span id="updated">??</span> days ago</td></tr>
+		</table>
+	</div>
 
 </body>
 </html>
