@@ -107,7 +107,10 @@ function getxuids()	{
 			games.name,
 			countries.name,
 			languages.name,
-			utime 
+			utime,
+			profile,
+			extract(days from now()-scanned),
+			xuid
 		from presence
 		join gamers using(xuid)
 		join profiles using(xuid)
@@ -119,7 +122,7 @@ function getxuids()	{
 		where
 			utime >= extract(epoch from now()-interval'1 day')::int and secs is null
 		$where
-		group by 1,2,3,4,5,6
+		group by 1,2,3,4,5,6,7,8,9
 		order by utime desc,3,2,4
 		limit 100
 

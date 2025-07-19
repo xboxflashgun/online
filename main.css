@@ -7,6 +7,16 @@ body {
     background-color: #ccc;
 }
 
+@font-face	{
+	font-family: "SegoeXboxMDL2Assets";
+	src: 	url("/fonts/SegXbox2.ttf") format("truetype");
+}
+
+.xbox   {
+	padding-left: 10px;
+	font-family: "SegoeXboxMDL2Assets";
+}
+
 h3 {
 }
 

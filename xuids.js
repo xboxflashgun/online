@@ -21,9 +21,16 @@ function drawxuids()	{
 			row[5] = (new Date(+row[5] * 1000)).toLocaleString().slice(12,17);
 			if(row[0].length < 16 && row[0].slice(0,1) !== '2')
 				row[0] = `<a href="https://www.xbox.com/play/user/${row[0]}" target="_blank">${row[0]}</a>`;
+			
+			row[6] = row[6].replaceAll('\\\\', '\\');
+			row[6] = (row[6] !== '\\N') ? JSON.parse(row[6]) : {} ;
+			row[7] = (row[7] === '\\N') ? -1 : +row[7];
+
 			tab.push(row);
 
 		});
+
+		console.log(tab);
 
 		d3.select(`#gamers tr.placeholder`).remove();
 
@@ -32,7 +39,10 @@ function drawxuids()	{
 		.join( enter => {
 
 			var tr = enter.append('tr');
-			tr.append('td').html( d => d[0] );		// gt
+			var td = tr.append('td').append('span');
+				td.append('span').html( d => d[0] );		// gt
+				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).html( '&#xE480;' );
+
 			tr.append('td').text( d => d[1] );		// 
 			tr.append('td').text( d => d[2] );
 			tr.append('td').text( d => d[3] );
@@ -41,7 +51,9 @@ function drawxuids()	{
 
 		}, update => {
 
-			update.select('td:nth-child(1)').html(d => d[0]);
+			var td = update.select('td:nth-child(1)');
+				td.select('span').html( d => d[0] );
+				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).html( '&#xE480;' );
 			update.select('td:nth-child(2)').text(d => d[1]);
 			update.select('td:nth-child(3)').text(d => d[2]);
 			update.select('td:nth-child(4)').text(d => d[3]);
