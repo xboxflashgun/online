@@ -41,6 +41,7 @@ function main() {
 	});
 
 	d3.select("#popup").style("display", "none");
+	d3.select("#profile").style("display", "none");
 	numbers();
 
 	svg = d3.select("#hourly")
