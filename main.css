@@ -116,7 +116,7 @@ input[type="button"] {
 
 #profile {
 	color: #fff;
-	padding: 60px;
+	padding: 20px;
 	border: 1px solid #fff;
 	border-radius: 5px;
 }
@@ -141,7 +141,7 @@ input[type="button"] {
 }
 
 #suffix	{
-	color: #eee;
+	color: #afbdc2;
 }
 
 #gamerscore {
@@ -166,8 +166,31 @@ input[type="button"] {
 	border-radius: 50%;
 }
 
-#updated {
-	font-style: itallic;
+#locph {
+	font-size: 120%;
+}
+
+#bioph {
+	font-size: 120%;
+}
+
+#accph {
+	font-size: 120%;
+}
+
+span.netacc {
+	display: inline-block;
+	position: relative;
+	bottom: 10px;
+	padding-left: 10px;
+
+}
+
+#profile td[colspan="2"] {
+	font-style: italic;
+	font-size: 120%;
+	text-align: right;
+	color: #bbb;
 }
 
 #profile h2 {

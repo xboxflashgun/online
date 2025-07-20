@@ -31,6 +31,45 @@ function profile(e, p, age)	{
 	loc ??= prof.detail.location;
 	d3.select("#location").style("display", loc ? null : "none");
 	d3.select("#locph").text(loc);
+
+	if(prof.preferredcolor)
+		d3.select("#profile").style("background-color", '#' + prof.preferredcolor.primaryColor);
 	
+	if(prof.linkedaccounts && prof.linkedaccounts.length > 0)	{
+
+		const nets = {
+			Discord:	{
+				logo: "Discord-Symbol-Blurple.svg"
+			},
+			Reddit: 	{
+				logo: "reddit.svg"
+			},
+			Steam: 		{
+				logo: "Steam_icon_logo.svg"
+			},
+			Twitch: 	{
+				logo: "glitch_flat_purple.svg"
+			},
+			YouTube:	{
+				logo: "youtube_social_icon_red.png"
+			}
+		};
+
+		var td = d3.select("#accph");
+		td.selectAll('*').remove();
+
+		prof.linkedaccounts.forEach( n => {
+
+			var net = n.networkName;
+
+			console.log(n);
+			
+			var div = td.append('div');
+			div.append("img").attr('src', '/img/' + nets[net].logo).style('height', '24px');
+			div.append("span").classed("netacc", true).text(n.displayName);
+
+		});
+
+	}
 
 }
