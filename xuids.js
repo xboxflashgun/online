@@ -31,7 +31,7 @@ function drawxuids()	{
 
 		});
 
-		d3.select(`#gamers tr.placeholder`).remove();
+		d3.selectAll('#gamers tr').remove();
 
 		d3.select('#gamers').selectAll('tr')
 		.data( tab )
@@ -39,12 +39,8 @@ function drawxuids()	{
 
 			var tr = enter.append('tr');
 			tr.append('td').html( d => d[0] );
-			tr.append('td').classed("xbox", true).attr("data-id", d => d[9]).html( (d => d[7] >= 0) ? '&#xE480;' : '&nbsp;' );
-//			var td = tr.append('td').append('span');
-//				td.append('span').html( d => d[0] );		// gt
-//				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).attr("data-id", d => d[9]).html( '&#xE480;' );
-
-			tr.append('td').text( d => d[1] );		// 
+			tr.append('td').classed("xbox", d => (d[7] >= 0)).attr("data-id", d => d[9]).html( d => (d[7] >= 0) ? '&#xE480;' : '&nbsp;' );
+			tr.append('td').text( d => d[1] );
 			tr.append('td').text( d => d[2] );
 			tr.append('td').text( d => d[3] );
 			tr.append('td').text( d => d[4] );
@@ -54,8 +50,6 @@ function drawxuids()	{
 
 			update.select('td:nth-child(1)').html( d => d[0] );
 			update.select('td:nth-child(1)').attr("data-id", d => d[9]).html( (d => d[7] >= 0) ? '&#xE480;' : '&nbsp;' );
-//				td.select('span').html( d => d[0] );
-//				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).attr("data-id", d => d[9]).html( '&#xE480;' );
 			update.select('td:nth-child(3)').text(d => d[1]);
 			update.select('td:nth-child(4)').text(d => d[2]);
 			update.select('td:nth-child(5)').text(d => d[3]);

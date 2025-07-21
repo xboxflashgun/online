@@ -122,7 +122,6 @@ function getxuids()	{
 		where
 			utime >= extract(epoch from now()-interval'1 day')::int and secs is null
 		$where
-			and profile->>'linkedAccounts' <> '[]'
 		group by 1,2,3,4,5,6,7,8,9
 		order by utime desc,3,2,4
 		limit 100
