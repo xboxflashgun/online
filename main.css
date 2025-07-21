@@ -183,6 +183,14 @@ input[type="button"] {
 	font-size: 120%;
 }
 
+#accph {
+	color: #aaa;
+}
+
+#accph a {
+	color: #fff;
+}
+
 span.netacc {
 	display: inline-block;
 	position: relative;

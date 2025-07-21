@@ -38,9 +38,11 @@ function drawxuids()	{
 		.join( enter => {
 
 			var tr = enter.append('tr');
-			var td = tr.append('td').append('span');
-				td.append('span').html( d => d[0] );		// gt
-				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).attr("data-id", d => d[9]).html( '&#xE480;' );
+			tr.append('td').html( d => d[0] );
+			tr.append('td').classed("xbox", true).attr("data-id", d => d[9]).html( (d => d[7] >= 0) ? '&#xE480;' : '&nbsp;' );
+//			var td = tr.append('td').append('span');
+//				td.append('span').html( d => d[0] );		// gt
+//				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).attr("data-id", d => d[9]).html( '&#xE480;' );
 
 			tr.append('td').text( d => d[1] );		// 
 			tr.append('td').text( d => d[2] );
@@ -50,14 +52,15 @@ function drawxuids()	{
 
 		}, update => {
 
-			var td = update.select('td:nth-child(1)');
-				td.select('span').html( d => d[0] );
-				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).attr("data-id", d => d[9]).html( '&#xE480;' );
-			update.select('td:nth-child(2)').text(d => d[1]);
-			update.select('td:nth-child(3)').text(d => d[2]);
-			update.select('td:nth-child(4)').text(d => d[3]);
-			update.select('td:nth-child(5)').text(d => d[4]);
-			update.select('td:nth-child(6)').text(d => d[5]);
+			update.select('td:nth-child(1)').html( d => d[0] );
+			update.select('td:nth-child(1)').attr("data-id", d => d[9]).html( (d => d[7] >= 0) ? '&#xE480;' : '&nbsp;' );
+//				td.select('span').html( d => d[0] );
+//				td.filter( d => d[7] >= 0).append('span').classed('xbox', true).attr("data-id", d => d[9]).html( '&#xE480;' );
+			update.select('td:nth-child(3)').text(d => d[1]);
+			update.select('td:nth-child(4)').text(d => d[2]);
+			update.select('td:nth-child(5)').text(d => d[3]);
+			update.select('td:nth-child(6)').text(d => d[4]);
+			update.select('td:nth-child(7)').text(d => d[5]);
 
 		}, exit => {
 
@@ -66,7 +69,7 @@ function drawxuids()	{
 		});
 
 		d3.select('#gamers').style('opacity', null);
-		d3.selectAll('#gamers span.xbox').on('click', e => profile(e, 
+		d3.selectAll('#gamers td.xbox').on('click', e => profile(e, 
 			tab[e.target.dataset.id][6], 
 			tab[e.target.dataset.id][7]) );		// send event, profile & prof. age
 
