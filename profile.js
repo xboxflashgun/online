@@ -20,6 +20,7 @@ function profile(e, p, age)	{
 	d3.select("#gamerscore").text(prof.gamerscore);
 
 	var pic = (prof.gamedisplaypicraw) ? prof.gamedisplaypicraw : prof.displaypicraw;
+	pic = pic.replace("&mode=Padding", "");
 
 	d3.select("#pic").attr("src", pic + "&w=200&h=200");
 	d3.select("#updated").text(age);
