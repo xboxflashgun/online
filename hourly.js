@@ -20,9 +20,12 @@ function hourly() {
 			var row = s.split('\t');
 			row[0] = (new Date(+row[0] * 1000)).toLocaleString().slice(12,17);
 			row[1] = +row[1];
+			row[2] = +row[2];
 			tab.push(row);
 
 		});
+
+		console.log(tab);
 
 		// x axis
 		var x = d3.scaleBand()
@@ -36,7 +39,7 @@ function hourly() {
 			.call(d3.axisBottom(x));
 
 		// y axis
-		var y = d3.scaleLinear([ 0, d3.max(tab.map( d => d[1] )) ], [200-30, 0]);
+		var y = d3.scaleLinear([ 0, d3.max(tab.map( d => d[1]+d[2] )) ], [200-30, 0]);
 
 		svg.select("#y-axis")
 			.transition()

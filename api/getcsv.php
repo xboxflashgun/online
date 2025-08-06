@@ -240,7 +240,8 @@ function gethourly()	{
 		with tab as (
 			select 
 				utime,
-				sum(gamers) as gamers
+				sum(gamers) as gamers,
+				sum(gamers2) as gamers2
 			from aggs.hourly_histo
 			$joing
 			where
@@ -249,7 +250,8 @@ function gethourly()	{
 		union
 			select
 	 			u as utime,
-	 			0 as gamers
+				0 as gamers,
+				0 as gamers2
 	 		from
 	 			generate_series(
 	 				(select min(utime) from aggs.hourly_histo),
@@ -257,7 +259,8 @@ function gethourly()	{
 	 				3600) u
 		) select
 			utime,
-			max(gamers) as gamers
+			max(gamers) as gamers,
+			max(gamers2) as gamers2
 		from tab
 		group by 1
 		order by 1
