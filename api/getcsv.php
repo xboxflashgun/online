@@ -46,7 +46,7 @@ function getnumber()	{
 
 	static $reqs = array(
 		"avgtime" => "select avg(secs)/60. from perflog where prog='presence' and prestime>=now()-interval '1 day'",
-		"maxtime" => "select max(utime) from presence where secs is null",
+		"maxtime" => "select max(utime) from localpres",
 		"gamers"  => "select gamers from history2 order by hdate desc limit 1",
 		"active"  => "select weekgamers from history2 order by hdate desc limit 1",
 		"gtready" => "select count(*) filter (where gt is not null)/count(*)::float from profiles",
@@ -85,13 +85,13 @@ function getxuids()	{
 	$joing = '';
 
 	if($devid)
-		$where .= "and presence.devid=$devid\n";
+		$where .= "and localpres.devid=$devid\n";
 
 	if($genreid)
 		$where .= "and genreid=$genreid\n";
 
 	if($titleid)
-		$where .= "and presence.titleid=$titleid\n";
+		$where .= "and localpres.titleid=$titleid\n";
 
 	if($countryid)
 		$where .= "and countryid=$countryid\n";
@@ -111,8 +111,8 @@ function getxuids()	{
 			profile,
 			extract(days from now()-scanned),
 			xuid
-		from presence
-		join gamers using(xuid)
+		from localpres
+		join xuidnew using(xuid)
 		join profiles using(xuid)
 		join games using(titleid)
 		join devices using(devid)
@@ -120,7 +120,8 @@ function getxuids()	{
 		join languages using(langid)
 		left join gamegenres using(titleid)
 		where
-			utime >= extract(epoch from now()-interval'1 day')::int and secs is null
+			utime >= extract(epoch from now()-interval'1 day')::int
+			and flg=3
 		$where
 		group by 1,2,3,4,5,6,7,8,9
 		order by utime desc,3,2,4
@@ -163,17 +164,20 @@ function gettab()	{		// tab = { devices, countries, langs, genres, titles }
 		$where .= "and titleid=$titleid\n";
 
 	if($countryid and $tab != 'countries')	{
-		$where .= "and countryid=$countryid\n";
-		$joinx = "join gamers using(xuid)\n";
+		$where .= "and countryid=$countryid and flg=3\n";
+		$joinx = "join xuidnew using(xuid)\n";
 	}
 
 	if($langid and $tab != 'langs')	{
-		$where .= "and langid=$langid\n";
-		$joinx = "join gamers using(xuid)\n";
+		$where .= "and langid=$langid and flg=3\n";
+		$joinx = "join xuidnew using(xuid)\n";
 	}
 
-	if($tab == 'langs' or $tab == 'countries')
-		$joinx = "join gamers using(xuid)\n";
+	if($tab == 'langs' or $tab == 'countries')	{
+		$where .= "and flg=3\n";
+		$joinx = "join xuidnew using(xuid)\n";
+	}
+
 
 	if($tab == 'titles' and strlen($filter) > 0) {
 		$joinx .= "join games using(titleid)\n";
@@ -187,12 +191,12 @@ function gettab()	{		// tab = { devices, countries, langs, genres, titles }
 
 		select 
 			$fld,count(*) 
-		from presence 
+		from localpres
 		$joing
 		$joinx
 		where
-			utime >= extract(epoch from now()-interval'1 day')::int and secs is null
-		$where
+			utime >= extract(epoch from now()-interval'1 day')::int
+			$where
 		group by cube(1)
 		order by 2 desc
 		limit 150
