@@ -60,6 +60,9 @@ function main() {
 	svg.append("g")
 		.attr("id", "y-axis");
 
+	svg.append("g")
+		.attr("id", "bars");
+
 	hourly();
 
 	d3.selectAll('input[type="button"]').on('click', e => {

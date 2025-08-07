@@ -20,6 +20,7 @@ function hourly() {
 			var row = s.split('\t');
 			row[0] = (new Date(+row[0] * 1000)).toLocaleString().slice(12,17);
 			row[1] = +row[1];
+			row[2] = +row[2];
 			tab.push(row);
 
 		});
@@ -48,7 +49,7 @@ function hourly() {
 
 			var oldy = +d3.select(this).attr("y");
 			var barx = +d3.select(this).attr("x");
-			var newy = y(d[1]);
+			var newy = y(d[1]+d[2]);
 
 			var tri;
 			if(oldy !== newy)
@@ -71,29 +72,41 @@ function hourly() {
 
 		}
 
-		svg.selectAll("rect")
+		svg.select("#bars").selectAll("g")
 			.data(tab)
 			.join( enter => {
 
-				enter.append("rect")
+				var g = enter.append("g");
+				g.append("rect")
 					.attr("x", d => x(d[0]))
 					.attr("y", d => y(d[1]))
 					.attr("data-num", d => d[1])
 					.attr("width", x.bandwidth())
 					.attr("height", d => 200-30 - y(d[1]))
 					.attr("fill", "#59a392");
+				g.append("rect")
+					.attr("x", d => x(d[0]))
+					.attr("y", d => y(d[1] + d[2]))
+					.attr("data-num", d => d[2])
+					.attr("width", x.bandwidth())
+					.attr("height", d => 200-30 - y(d[2]))
+					.attr("fill", "#da5f5f");
 
 			}, update => {
 
-				update
+				update.select("rect")
+					.transition()
+					.duration(700)
+					.attr("y", d => y(d[1]))
+					.attr("data-num", d => d[1])
+					.attr("height", d => 200-30 - y(d[1]));
+				update.select("rect:nth-child(2)")
 					.transition()
 					.tween('lil-arrows', tweenfunc)
 					.duration(700)
-					.attr("x", d => x(d[0]))
-					.attr("y", d => y(d[1]))
-					.attr("data-num", d => d[1])
-					.attr("width", x.bandwidth())
-					.attr("height", d => 200-30 - y(d[1]));
+					.attr("y", d => y(d[1] + d[2]))
+					.attr("data-num", d => d[2])
+					.attr("height", d => 200-30 - y(d[2]));
 
 			}, exit => {
 
@@ -103,24 +116,24 @@ function hourly() {
 
 		svg.selectAll("rect")
 			.attr("pointer-events", "all")
-			.on("mousemove", function(e) {
+			.on("mouseover", function(e) {
 
 				var [ mx, my ] = [ e.clientX, e.clientY];
 				d3.select(e.target)
-					.attr("fill", "#69b3a2")
+					.style('filter', 'brightness(1.2)')
 					.classed("highlight", true);
 				
 				d3.select("#popup")
 					.style("left", mx + 'px')
 					.style("top", (my - 40) + 'px')
 					.text(e.target.dataset.num);
-				d3.select("#popup").style("display", undefined);
+				d3.select("#popup").style("display", null);
 
 			})
 			.on("mouseout", () => {
 				
 				d3.select("rect.highlight")
-					.attr("fill", "#59a392")
+					.style('filter', 'brightness(1)')
 					.classed("highlight", false);
 				d3.select("#popup").style("display", "none");
 
