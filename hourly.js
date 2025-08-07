@@ -25,8 +25,6 @@ function hourly() {
 
 		});
 
-		console.log(tab);
-
 		// x axis
 		var x = d3.scaleBand()
 			.range( [ 0,960 - 90]  )
