@@ -16,13 +16,10 @@
 </head>
 <body onload="main()">
 
-	<h2>XBOX Gamers online</h2>
+	<h2>XBOX Gamers online <i>right now</i></h2>
 
-	<p>Looking for information on games and gamers in the Xbox Live ecosystem?
-You've come to the right place.
-My pet project is 10 years old and is an unofficial source of information regarding Xbox Live games on various devices.
-This page shows what games players are playing right now.
-You can (and should) filter the parameters you're interested in.<p>
+	<p>This page shows what games players are playing right now.
+You can (and should) filter the parameters you're interested in.</p>
 
 	<p>Below is the graph of the activity for the last 24 hours. 
 	You can select country in the corresponding table 
@@ -156,54 +153,11 @@ You can (and should) filter the parameters you're interested in.<p>
 			<tr class="placeholder"><td>Loading...</td></tr>
 	</tbody></table>
 
-	<h3>How it works</h3>
-
-	<input type="button" value="Reset filters" />
-
-	<p>Every <span class="numbers" id="avgtime"></span> minutes my scripts scan the state (
-	<a href="https://learn.microsoft.com/en-us/gaming/gdk/docs/reference/live/rest/uri/presence/atoc-reference-presence" target="_blank">Presence</a>
-	) of <span class="numbers" id="xuids"></span> players.
-	Presence shows which game is currently running and on which device. 
-	I store this information in the 
-	<a href="https://postgrespro.com/products/postgrespro/enterprise" target="_blank">Postgres Pro Enterprise</a> DBMS. </p>
-	
-	<p>A separate pool of scripts attempts to get a list of clips and screenshots, 
-	from which I determine the country and language. 
-	Another scripts are determining the Gamertag. 
-	And another set of scripts continuously expands the list of gamers
-	by brute-forcing the id.</p>
-
-	<p>I do not scan players for whom it was not possible to determine the language/country.</p>
-
-	<p>The entire complex consists of three dedicated servers 
-	that receive the necessary information from 50+ artificial accounts. 
-	The main problem is not to cause problems for the Xbox Live servers, 
-	for which I observe 
-	<a href="https://learn.microsoft.com/en-us/gaming/gdk/docs/services/develop/best-practices/live-fine-grained-rate-limiting" target="_blank">Fine-Grained Rate Limiting</a>.</p>
-
-	<p>Let me summarize a bit</p>
-
-	<ul>My sample does NOT include
-		<li>players who set the "invisible" ("offline") status</li>
-		<li>players who did not take a single screenshot or record a single video</li>
-		<li>offline players who disconnects from the Internet</li>
-		<li>players who have a "child account" profile (under 18 years old), 
-			for them there are some kind of cruel restrictions on requesting information</li>
-		<li>who have not yet reached the turn of my brute-forcer</li>
-	</ul>
-
-	<p>It would seem that my sample is crap. 
-	But - tens of millions of players who passed through all these filters do not allow me to say that, 
-	and give a very truthful picture of what is happening on game stage.</p>
-
-
-	<h3>Custom reporting</h3>
-	<p>Yes, I keep all the information avbove since Febriary 2024. 
-	For example, <span class="numbers" id="active"></span> gamers were active last week.
-	In case you are interested, contact me.</p>
 	<div>
 		<label><input type="checkbox" id="compact">Compact page (hide text)</label>
 	</div>
+
+	<input type="button" value="Reset filters" style="margin-top: -10px" />
 
 	<footer>Contact: <a href="mailto:flashgun@xboxstat.com?subject=xboxstat.com">flashgun@xboxstat.com</a></footer>
 	
