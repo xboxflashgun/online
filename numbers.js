@@ -18,10 +18,6 @@ var numblist = {
 		req: "active",
 		parser: shortnum
 	},
-	gtready: {
-		req: "gtready",
-		parser: (e) => (+e * 100).toFixed(1) + '%'
-	},
 }
 
 function numbers()	{
