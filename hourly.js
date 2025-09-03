@@ -18,7 +18,7 @@ function hourly() {
 				return;
 
 			var row = s.split('\t');
-			row[0] = (new Date(+row[0] * 1000)).toLocaleString().slice(12,17);
+			row[0] = (new Date(+row[0] * 1000)).toLocaleTimeString([],{ hour: "2-digit", minute: "2-digit" });
 			row[1] = +row[1];
 			row[2] = +row[2];
 			tab.push(row);
